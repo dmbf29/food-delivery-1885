@@ -7,7 +7,6 @@ class MealRepository
     @meals = [] # array with meal instances
     @next_id = 1
     load_csv if File.exist?(@csv_file_path)
-
   end
 
   def all
@@ -19,6 +18,12 @@ class MealRepository
     @meals << meal
     @next_id += 1
     save_csv
+  end
+
+  def find(id)
+    @meals.find do |meal|
+      meal.id == id
+    end
   end
 
   private

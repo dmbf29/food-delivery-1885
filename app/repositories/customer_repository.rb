@@ -7,7 +7,6 @@ class CustomerRepository
     @customers = [] # array with customer instances
     @next_id = 1
     load_csv if File.exist?(@csv_file_path)
-
   end
 
   def all
@@ -19,6 +18,12 @@ class CustomerRepository
     @customers << customer
     @next_id += 1
     save_csv
+  end
+
+  def find(id)
+    @customers.find do |customer|
+      customer.id == id
+    end
   end
 
   private
